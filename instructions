@@ -1,0 +1,83 @@
+    cd ~/geonode_live
+    mkdir -p geonode_live/cache/layers
+    sudo chown -R www-data:www-data geonode_live/cache
+scp user@192.168.10.43:~/colombo.tgz .
+
+Note the period
+
+type yes
+
+pasword is user
+
+to load colombo data
+
+mv colombo.tgz ..
+cd ..
+tar  xvzf colombo.tgz 
+
+create new layer 
+upload colombo dbf/prj/shp/shx
+
+upload shp to geonodes
+
+cd geonode_live
+wokon geonode_live  
+i.e to open phython virtual env
+python manage.py importlayers -k osm ~/colombo/*.shp
+
+//make a map
+http://localhost/geoserver/wms
+
+open qgis
+add wfs layer
+chnage properties
+to save style tab, style button and save style
+
+//geoserver
+styles
+select a style buildinigs.sld
+browse saved style in previous step
+upload style
+
+
+
+//geoforall has course materilas and curriculam FOSS4G
+
+// development of django and later connect t o geocode
+
+workon geonode_live  //chnage to geonode_live vertual environment)
+
+
+$ python -m django --version
+python
+import django 
+print django version
+or chnage the version  and follwo instructions
+
+
+//puting my site in git
+//https://dpaste.de/Pfus
+
+    cd ~/mysite
+    git init
+    echo "*.pyc" >> .gitignore
+    echo "*.sqlite3" >> .gitignore
+    git add .
+    git config --global user.email ortelius@gmail.com
+    git config --global user.name "Jeffrey Johnson"
+    git commit -am "Initial Add"
+    git remote add origin http://github.com/jj0hns0n/mysite.git
+    git push -u origin master
+     
+    To get your code back to your machine after reboot (or another machine)
+     
+    git clone http://github.com/jj0hns0n/mysite.git
+     
+    You will need to do this again (since the database does not go in github)
+     
+    workon geonode_live
+    python manage.py migrate
+    python manage.py runserver
+
+
+
